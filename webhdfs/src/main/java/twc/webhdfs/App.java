@@ -66,8 +66,9 @@ public class App
              }
          };
          ctx.init(null, new TrustManager[] { (TrustManager) tm }, null);
-         SSLConnectionSocketFactory ssf = new SSLConnectionSocketFactory(ctx,
-             SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        // SSLConnectionSocketFactory ssf = new SSLConnectionSocketFactory(ctx,
+        //     SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+         SSLConnectionSocketFactory ssf = new SSLConnectionSocketFactory(ctx,new ServerHostnameVerifier());
          Registry<ConnectionSocketFactory> r = RegistryBuilder.<ConnectionSocketFactory> create()
              .register("https", ssf).build();
          BasicCredentialsProvider basicProvider=new BasicCredentialsProvider();
